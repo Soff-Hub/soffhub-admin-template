@@ -10,3 +10,12 @@ export const authRoutes = [
         component: React.lazy(() => import('views/auth/login'))
     }
 ]
+
+
+export const adminRoutes = [
+    {
+        key: 'home',
+        path: '/',
+        component: React.lazy(() => import('views/home/home'))
+    }
+]

@@ -48,6 +48,7 @@ const login = () => {
             <h1 className='text-center text-[35px]'>Login</h1>
             <TextField
               label="Email"
+              // eslint-disable-next-line
               error={values.email && errors.email || values.email === '' && errors.email}
               helperText={errors.email}
               variant="filled"
@@ -58,6 +59,7 @@ const login = () => {
               value={values.email}
             />
             <TextField
+            // eslint-disable-next-line
               error={values.password && errors.password || errors.password}
               helperText={errors.password}
               label="Pasword"
