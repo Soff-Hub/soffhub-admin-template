@@ -6,15 +6,16 @@ import { useSelector } from 'react-redux'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 
 export default function Views() {
-
+  
   const { isLoginning } = useSelector(state => state.admin)
   const navigate = useNavigate()
-
-
+  
+  
   useEffect(() => {
     if (!isLoginning) {
       navigate('/login')
     }
+    // eslint-disable-next-line
   }, [])
 
   return (
@@ -27,3 +28,4 @@ export default function Views() {
     </Routes>
   )
 }
+
