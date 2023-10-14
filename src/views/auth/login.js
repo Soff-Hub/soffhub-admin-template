@@ -2,8 +2,14 @@ import React from 'react';
 import { Formik } from 'formik';
 import { Button, TextField } from '@mui/material';
 
-const login = () => (
-  <div className='login-page'>
+const login = () => {
+
+  const handleSubmit = (values) => {
+    alert(values)
+  }
+
+
+  return <div className='login-page'>
     <Formik
       initialValues={{ email: '', password: '' }}
       validate={values => {
@@ -23,7 +29,7 @@ const login = () => (
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
+          handleSubmit(JSON.stringify(values, null, 2))
           setSubmitting(false);
         }, 400);
       }}
@@ -69,7 +75,6 @@ const login = () => (
       )}
     </Formik>
   </div>
-
-);
+};
 
 export default login;
