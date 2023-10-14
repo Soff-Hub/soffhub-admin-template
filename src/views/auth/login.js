@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import { Button, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from 'store/slice';
 import { useNavigate } from 'react-router-dom';
+import Client from 'service/Client';
+import { API_ENDPOINTS } from 'service/ApiEndpoints';
 
 function Login() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  
+
+  const get = async () => {
+    await Client.get(API_ENDPOINTS.TODOS)
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+  }
+
   const handleSubmit = (values) => {
     navigate('/')
     dispatch(loginSuccess())
   }
+
+  useEffect(() => {
+    get()
+  }, [])
 
 
   return <div className='login-page'>
