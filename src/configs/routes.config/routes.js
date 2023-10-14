@@ -15,7 +15,25 @@ export const authRoutes = [
 export const adminRoutes = [
     {
         key: 'home',
-        path: '/',
+        path: '/*',
         component: React.lazy(() => import('views/home/home'))
     }
+]
+
+export const adminActionRoutes = [
+    {
+        key: 'dashboard',
+        path: '/dashboard',
+        component: React.lazy(() => import('views/home/pages/dashboard'))
+    },
+    {
+        key: 'components',
+        path: '/components',
+        component: React.lazy(() => import('views/home/pages/components'))
+    },
+    {
+        key: 'documentation',
+        path: '/documentation',
+        component: React.lazy(() => import('views/home/pages/documentation'))
+    },
 ]

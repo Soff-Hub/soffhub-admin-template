@@ -16,6 +16,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import { navigationConfig } from 'configs/navigationConfig';
+import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { adminActionRoutes } from 'configs/routes.config/routes';
+import AppRoute from 'components/route/AppRoute';
 
 const drawerWidth = 260;
 
@@ -86,23 +91,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function MiniDrawer() {
   const [open, setOpen] = React.useState(true);
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  const menuItems = [{
-    name: 'Dashboard',
-    icon: <DashboardIcon />,
-  }, {
-    name: 'Tables',
-    icon: <DashboardIcon />,
-  }, {
-    name: 'Menu Item 3',
-    icon: <DashboardIcon />,
-  }, {
-    name: 'Menu Item 4',
-    icon: <DashboardIcon />,
-  }
-  ]
-
-
+  console.log(location);
 
 
   const handleDrawerOpen = () => {
@@ -112,6 +104,12 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      navigate('/dashboard')
+    }
+  }, [location.pathname])
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -144,26 +142,28 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-          {menuItems.map((item, index) => (
+          {navigationConfig.map((item, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+              <Link to={item.path}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </Link>
               <Divider />
             </ListItem>
           ))}
@@ -172,7 +172,13 @@ export default function MiniDrawer() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <div>
-          Home
+          <Routes>
+            {
+              adminActionRoutes.map((route, index) => {
+                return <Route key={index} path={route.path} element={<AppRoute component={route.component} />} />
+              })
+            }
+          </Routes>
         </div>
       </Box>
     </Box>
