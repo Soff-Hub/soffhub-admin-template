@@ -1,11 +1,17 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { Button, TextField } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from 'store/slice';
+import { useNavigate } from 'react-router-dom';
 
-const login = () => {
-
+function Login() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  
   const handleSubmit = (values) => {
-    alert(values)
+    navigate('/')
+    dispatch(loginSuccess())
   }
 
 
@@ -59,7 +65,7 @@ const login = () => {
               value={values.email}
             />
             <TextField
-            // eslint-disable-next-line
+              // eslint-disable-next-line
               error={values.password && errors.password || errors.password}
               helperText={errors.password}
               label="Pasword"
@@ -79,4 +85,4 @@ const login = () => {
   </div>
 };
 
-export default login;
+export default Login;

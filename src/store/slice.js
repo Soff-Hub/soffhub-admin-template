@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    isLoginning: true,
+    isLoginning: !true,
     token: ''
 }
 
@@ -10,7 +10,7 @@ const slice = createSlice({
     initialState,
     reducers: {
         loginSuccess: (state, action) => {
-            state.token = action.payload.token
+            // state.token = action.payload.token
             state.isLoginning = true
         }
     }
