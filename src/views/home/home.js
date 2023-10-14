@@ -21,6 +21,8 @@ import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react';
 import { adminActionRoutes } from 'configs/routes.config/routes';
 import AppRoute from 'components/route/AppRoute';
+import UserDropdown from 'components/shared/UserDropdown';
+import { Suspense } from 'react';
 
 const drawerWidth = 260;
 
@@ -94,8 +96,6 @@ export default function MiniDrawer() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  console.log(location);
-
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -129,8 +129,11 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Home
+            {
+              location.pathname.split('/')[1].toUpperCase()
+            }
           </Typography>
+          <UserDropdown />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -172,13 +175,15 @@ export default function MiniDrawer() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <div>
-          <Routes>
-            {
-              adminActionRoutes.map((route, index) => {
-                return <Route key={index} path={route.path} element={<AppRoute component={route.component} />} />
-              })
-            }
-          </Routes>
+          <Suspense>
+            <Routes>
+              {
+                adminActionRoutes.map((route, index) => {
+                  return <Route key={index} path={route.path} element={<AppRoute component={route.component} />} />
+                })
+              }
+            </Routes>
+          </Suspense>
         </div>
       </Box>
     </Box>
