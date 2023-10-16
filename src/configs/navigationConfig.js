@@ -6,10 +6,6 @@ export const navigationConfig = [
         path: '/dashboard',
         icon: <DashboardIcon />,
     }, {
-        name: 'Components',
-        path: '/components',
-        icon: <DashboardIcon />,
-    }, {
         name: 'Documentation',
         path: '/documentation',
         icon: <DashboardIcon />,

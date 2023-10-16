@@ -27,11 +27,6 @@ export const adminActionRoutes = [
         component: React.lazy(() => import('views/home/pages/dashboard'))
     },
     {
-        key: 'components',
-        path: '/components',
-        component: React.lazy(() => import('views/home/pages/components'))
-    },
-    {
         key: 'documentation',
         path: '/documentation',
         component: React.lazy(() => import('views/home/pages/documentation'))
