@@ -20,9 +20,13 @@ export default function Documentation() {
             <p className='pl-[60px] text-yellow-500'>├ pages</p>
             <p className='pl-[90px] text-green-500'>├ yangi-page.js</p>
           </p>
-          <p>yuqoridagi <span className='text-yellow-500'>pages</span> papkasiga o'z
+          <p>Yuqoridagi <span className='text-yellow-500'>pages</span> papkasiga o'z
             <span className='text-green-500'> yangi-page.js </span>
-            faylini yarting va o'zpage kodlarini yozing
+            faylini yarting va o'z page kodlaringizni yozing
+          </p>
+          <p>Huddi shunday <span className='text-yellow-500'>configs papkasida, navigationConfig.js</span>
+            <span className='text-green-500'> navigationConfig </span>
+            arrayda yozilgani kabi yangi navigatsiya yarating agar zarurat bo'lsa
           </p>
           <p className='font-bold text-md mt-5'>2- page uchun route yozish</p>
           <p className='bg-gray-200 p-2 mb-4'>
@@ -45,6 +49,33 @@ export default function Documentation() {
               {`}`}
             </p>
             ];
+          </p>
+        </div>
+        <div className='mb-4'>
+          <p className='font-bold text-xl'>API so'rovlarini yuborish</p>
+          <p className='font-bold text-md'>
+            Bunda barcha API so'rov funksiyalari yozilgan siz NEDPOIN yaratishingiz kerak va funksiyaga murojaat qilishingiz kerak</p>
+          <p className='font-bold text-md'>1- Endpoind qanday yarataman?</p>
+          <p className='bg-gray-200 p-2'>
+            <p className='text-yellow-500'>src</p>
+            <p className='[30px] text-yellow-500'>├ service</p>
+            <p className='pl-[30px] text-yellow-500'>├ ApiEndpoints.js</p>
+          </p>
+          <p>Yuqoridagi <span className='text-yellow-500'>ApiEndpoints.js</span> faylidagi
+            <span className='text-green-500'> API_ENDPOINTS </span>
+            obektiga o'z endointingizni qo'shing, misol uchun,<span className='text-yellow-500'> USERS: 'users'</span>
+          </p>
+          <p className='font-bold text-md mt-5'>2- Fuksiyaga murojaat qilish</p>
+          <p className='text-orange-600 bg-gray-300 p-2'>
+            async function getUsers() {`{`}  <br />
+            <p className='pl-[20px]'>
+              <p className='pl-[5px]'>await <span className='text-green-600'>Client</span>.<span className='text-blue-900'>get</span>
+                (API_ENDPOINTS.USERS) <span className='text-green-700'>// agar post boladigan bolsa, Cient.post(API_ENDPOINTS.USERS, {`{name: 'Doniyor'}`}) patch da ham shunday</span>
+              </p>
+              <p className='pl-[20px]'>.then({`data => console.log(data)`})</p>
+              <p className='pl-[20px]'>.catch({`error => console.log(error)`})</p>
+            </p>
+            {`}`};
           </p>
         </div>
       </div>
